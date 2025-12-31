@@ -55,6 +55,259 @@ async function spicyPotatoStats() {
         document.getElementById("Prathamlastonline").innerHTML = `<p> ${PrathamlastOnline} </p>`
         document.getElementById("Prahladlastonline").innerHTML = `<p> ${PrahladlastOnline} </p>`
 
+
+        const STREAK_START = new Date("2025-12-31").toLocaleDateString();
+        const today = new Date().toLocaleDateString();
+
+        const harshStreak = await fetch("https://codeforces.com/api/user.status?handle=vorqx&from=1&count=20")
+        const harshStreakData = await harshStreak.json();
+
+        const harshStreakUpdate = harshStreakData.result;
+
+
+        let harshStreakValue = 0;        
+        const solvedDays = new Set();
+  
+        harshStreakUpdate.forEach(e => {
+                if(e.verdict === "OK"){
+                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
+                        solvedDays.add( meo );
+                     
+                }
+        });
+
+
+       const harshArray = Array.from(solvedDays);
+
+       harshArray.sort( (a,b) => new Date(b) - new Date(a));
+       const harshfiltered = harshArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
+
+
+     
+
+if(new Date(today) < STREAK_START){
+    document.getElementById("HarshStreak").parentElement.style.display = "none";
+}
+else if(harshfiltered.length === 0){
+    document.getElementById("HarshStreak").parentElement.style.display = "none";
+}
+else {
+    if(harshfiltered[0] !== today){
+        document.getElementById("HarshStreak").parentElement.style.display = "none";
+    } 
+    else {
+
+        harshStreakValue = 1; 
+
+        for(let i = 0; i < harshfiltered.length - 1; i++){
+
+            let d1 = new Date(harshfiltered[i]);
+            let d2 = new Date(harshfiltered[i+1]);
+
+            let harshgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
+
+            if(harshgapDays === 1){
+                harshStreakValue++;
+            } else {
+                break;
+            }
+        }
+
+        document.getElementById("HarshStreak").innerHTML = `<span>${harshStreakValue}</span>`;
+        document.getElementById("HarshStreak").parentElement.style.display = "flex";
+    }
+}
+
+
+
+        const raunakStreak = await fetch("https://codeforces.com/api/user.status?handle=rust7&from=1&count=20")
+        const raunakStreakData = await raunakStreak.json();
+
+        const raunakStreakUpdate = raunakStreakData.result;
+
+
+ 
+        const raunaksolvedDays = new Set();
+  
+        raunakStreakUpdate.forEach(e => {
+                if(e.verdict === "OK"){
+                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
+                        raunaksolvedDays.add( meo );
+                }
+        });
+
+       const raunakArray = Array.from(raunaksolvedDays);
+       raunakArray.sort((a,b) => new Date(b) - new Date(a));
+
+    
+
+
+          const raunakfiltered = raunakArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
+
+
+
+let raunakstreak = 0;
+
+
+if(new Date(today) < STREAK_START){
+    document.getElementById("RaunakStreak").parentElement.style.display = "none";
+}
+else if(raunakfiltered.length === 0){
+    document.getElementById("RaunakStreak").parentElement.style.display = "none";
+}
+else {
+
+  
+    if(raunakfiltered[0] !== today){
+        document.getElementById("RaunakStreak").parentElement.style.display = "none";
+    } 
+    else {
+
+        raunakstreak = 1;   
+
+        for(let i = 0; i < raunakfiltered.length - 1; i++){
+
+            let d1 = new Date(raunakfiltered[i]);
+            let d2 = new Date(raunakfiltered[i+1]);
+
+            let raunakgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
+
+            if(raunakgapDays === 1){
+                raunakstreak++;
+            } else {
+                break;
+            }
+        }
+
+        document.getElementById("RaunakStreak").innerHTML = `<span>${raunakstreak}</span>`;
+        document.getElementById("RaunakStreak").parentElement.style.display = "flex";
+    }
+}
+
+
+                
+         const prathamStreak = await fetch("https://codeforces.com/api/user.status?handle=snow07&from=1&count=20")
+        const prathamStreakData = await prathamStreak.json();
+
+        const prathamStreakUpdate = prathamStreakData.result;
+
+      
+        const prathamsolvedDays = new Set();
+  
+        prathamStreakUpdate.forEach(e => {
+                if(e.verdict === "OK"){
+                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
+                        prathamsolvedDays.add( meo );
+                }
+        });
+
+       const prathamArray = Array.from(prathamsolvedDays);
+       prathamArray.sort((a,b) => new Date(b) - new Date(a));
+
+
+const prathamfiltered = prathamArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
+
+
+      let prathamstreak = 0;
+
+if(new Date(today) < STREAK_START){
+    document.getElementById("PrathamStreak").parentElement.style.display = "none";
+}
+else if(prathamfiltered.length === 0){
+    document.getElementById("PrathamStreak").parentElement.style.display = "none";
+}
+else {
+
+   
+    if(prathamfiltered[0] !== today){
+        document.getElementById("PrathamStreak").parentElement.style.display = "none";
+    } 
+    else {
+
+        prathamstreak = 1; 
+
+        for(let i = 0; i < prathamfiltered.length - 1; i++){
+
+            let d1 = new Date(prathamfiltered[i]);
+            let d2 = new Date(prathamfiltered[i+1]);
+
+            let prathamgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
+
+            if(prathamgapDays === 1){
+                prathamstreak++;
+            } else {
+                break;
+            }
+        }
+
+        document.getElementById("PrathamStreak").innerHTML = `<span>${prathamstreak}</span>`;
+        document.getElementById("PrathamStreak").parentElement.style.display = "flex";
+    }
+}
+
+
+        
+                
+         const prahladStreak = await fetch("https://codeforces.com/api/user.status?handle=prahlad_kumar-0037&from=1&count=20")
+        const prahladStreakData = await prahladStreak.json();
+
+        const prahladStreakUpdate = prahladStreakData.result;
+
+
+        let prahladStreakValue = 0;        
+        const prahladsolvedDays = new Set();
+  
+        prahladStreakUpdate.forEach(e => {
+                if(e.verdict === "OK"){
+                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
+                        prahladsolvedDays.add( meo );
+                }
+        });
+
+       const prahladArray = Array.from(prahladsolvedDays);
+       prahladArray.sort((a,b) => new Date(b) - new Date(a));
+
+const prahladfiltered = prahladArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
+
+
+if(new Date(today) < STREAK_START){
+    document.getElementById("PrahladStreak").parentElement.style.display = "none";
+}
+else if(prahladfiltered.length === 0){
+    document.getElementById("PrahladStreak").parentElement.style.display = "none";
+}
+else {
+
+ 
+    if(prahladfiltered[0] !== today){
+        document.getElementById("PrahladStreak").parentElement.style.display = "none";
+    } 
+    else {
+
+        prahladStreakValue = 1;   
+
+        for(let i = 0; i < prahladfiltered.length - 1; i++){
+
+            let d1 = new Date(prahladfiltered[i]);
+            let d2 = new Date(prahladfiltered[i+1]);
+
+            let prahladgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
+
+            if(prahladgapDays === 1){
+                prahladStreakValue++;
+            } else {
+                break;
+            }
+        }
+
+        document.getElementById("PrahladStreak").innerHTML = `<span>${prahladStreakValue}</span>`;
+        document.getElementById("PrahladStreak").parentElement.style.display = "flex";
+    }
+}
+
+       
+
+
 }
 
 
