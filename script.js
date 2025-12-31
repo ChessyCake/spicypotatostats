@@ -56,7 +56,7 @@ async function spicyPotatoStats() {
         document.getElementById("Prahladlastonline").innerHTML = `<p> ${PrahladlastOnline} </p>`
 
 
-        const STREAK_START = new Date("2025-12-31").toLocaleDateString();
+        const STREAK_START = new Date("2026-01-01").toLocaleDateString();
         const today = new Date().toLocaleDateString();
 
         const harshStreak = await fetch("https://codeforces.com/api/user.status?handle=vorqx&from=1&count=20")
@@ -83,9 +83,11 @@ async function spicyPotatoStats() {
        const harshfiltered = harshArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
 
 
-     
+   
 
-if(new Date(today) < STREAK_START){
+    
+
+if(new Date(today) < Date.parse(STREAK_START)){
     document.getElementById("HarshStreak").parentElement.style.display = "none";
 }
 else if(harshfiltered.length === 0){
@@ -149,7 +151,7 @@ else {
 let raunakstreak = 0;
 
 
-if(new Date(today) < STREAK_START){
+if(new Date(today) < Date.parse(STREAK_START)){
     document.getElementById("RaunakStreak").parentElement.style.display = "none";
 }
 else if(raunakfiltered.length === 0){
@@ -210,7 +212,7 @@ const prathamfiltered = prathamArray.filter(d => new Date(d).toLocaleDateString(
 
       let prathamstreak = 0;
 
-if(new Date(today) < STREAK_START){
+if(new Date(today) < Date.parse(STREAK_START)){
     document.getElementById("PrathamStreak").parentElement.style.display = "none";
 }
 else if(prathamfiltered.length === 0){
@@ -270,7 +272,7 @@ else {
 const prahladfiltered = prahladArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
 
 
-if(new Date(today) < STREAK_START){
+if(new Date(today) < Date.parse(STREAK_START)){
     document.getElementById("PrahladStreak").parentElement.style.display = "none";
 }
 else if(prahladfiltered.length === 0){

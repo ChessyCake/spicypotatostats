@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=BBH+Bogle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+
 
 *{
   margin: 0;
@@ -118,8 +120,9 @@ header nav .logo-nav .text{
 
 
 .streak span{
+    font-family: "Rye", serif;
     font-size: 52px;
-    /* color: blue; */
+    /* color: red; */
 }
 
 .streak-count{
