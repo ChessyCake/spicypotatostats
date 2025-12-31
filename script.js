@@ -1,7 +1,7 @@
 window.onload = spicyPotatoStats;
 
 async function spicyPotatoStats() {
-         const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;snow07;prahlad_kumar-0037");
+         const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;prahlad_kumar-0037");
          const data = await info.json();
          
          const dataArr = data.result;
@@ -186,7 +186,7 @@ else {
 
 
                 
-         const prathamStreak = await fetch("https://codeforces.com/api/user.status?handle=snow07&from=1&count=20")
+         const prathamStreak = await fetch("https://codeforces.com/api/user.status?handle=sn0w07&from=1&count=20")
         const prathamStreakData = await prathamStreak.json();
 
         const prathamStreakUpdate = prathamStreakData.result;
