@@ -309,7 +309,7 @@ const tem = document.getElementById("time");
 
 setInterval(()=>{
     const tim = new Date().toLocaleTimeString();
-    tem.innerHTML = `Current Time: ${tim}`;
+    tem.innerHTML = `<h1>Time: <span> ${tim} </span> <h1>`;
 },1000)
 
 

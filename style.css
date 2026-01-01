@@ -230,6 +230,16 @@ footer{
   align-items: center;
 }
 
+
+footer h1{
+  font-size: 34px;
+}
+
+footer span{
+  font-size: 34px;
+  padding: 20px;
+  color: red;
+}
 footer .container .text{
   color: white;
   font-size: 34px;
