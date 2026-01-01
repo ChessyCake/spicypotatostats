@@ -56,7 +56,7 @@ async function spicyPotatoStats() {
         document.getElementById("Prahladlastonline").innerHTML = `<p> ${PrahladlastOnline} </p>`
 
 
-        const STREAK_START = new Date("2026-01-01").toLocaleDateString();
+        const STREAK_START = new Date('01/01/2026').toLocaleDateString();
         const today = new Date().toLocaleDateString();
 
         const harshStreak = await fetch("https://codeforces.com/api/user.status?handle=vorqx&from=1&count=20")
@@ -78,11 +78,9 @@ async function spicyPotatoStats() {
 
 
        const harshArray = Array.from(solvedDays);
-
        harshArray.sort( (a,b) => new Date(b) - new Date(a));
-       const harshfiltered = harshArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
 
-
+       const harshfiltered = harshArray.filter((d) => new Date(d) >= new Date(STREAK_START));
 
 
 if(Date.parse(today) < Date.parse(STREAK_START)){
@@ -141,9 +139,8 @@ else {
 
     
 
-
-          const raunakfiltered = raunakArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
-
+               const raunakfiltered =  raunakArray.filter( (e) => new Date(e) >= new Date(STREAK_START));
+             
 
 
 let raunakstreak = 0;
@@ -205,8 +202,7 @@ else {
        prathamArray.sort((a,b) => new Date(b) - new Date(a));
 
 
-const prathamfiltered = prathamArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
-
+const prathamfiltered = prathamArray.filter(d => new Date(d) >= new Date(STREAK_START));
 
       let prathamstreak = 0;
 
@@ -267,8 +263,7 @@ else {
        const prahladArray = Array.from(prahladsolvedDays);
        prahladArray.sort((a,b) => new Date(b) - new Date(a));
 
-const prahladfiltered = prahladArray.filter(d => new Date(d).toLocaleDateString() >= STREAK_START);
-
+const prahladfiltered = prahladArray.filter(d => new Date(d) >= new Date( STREAK_START ));
 
 if( Date.parse(today) < Date.parse(STREAK_START)){
     document.getElementById("PrahladStreak").parentElement.style.display = "none";
