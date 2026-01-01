@@ -258,7 +258,7 @@ header nav .logo-nav .text{
 
 
 footer{
-  /* visibility: hidden; */
+  visibility: hidden;
   background-color: #212121;
   height: 20vh;
   display: flex;
