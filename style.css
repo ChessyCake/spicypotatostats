@@ -12,6 +12,10 @@
 
 body{
   background-color: #CD6858;
+  background-image: url(assets/justclouds.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100%;
 }
 
@@ -67,11 +71,37 @@ header nav .logo-nav .text{
   max-width: 95vw;
 }
 
+#harshfoot{
+  background-image: url(assets/7.jpg);
+  background-position: top;
+  background-size: cover;
+}
+
+#raunakfoot{
+ background-image: url(assets/personclouds.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+
+#prathamfoot{
+ background-image: url(assets/lampclouds.jpeg);
+  background-position: top;
+  background-size: cover;
+}
+
+#prahladfoot{
+ background-image: url(assets/cloudrailing.jpg);
+  background-position: top;
+  background-size: cover;
+}
+
 .container .foot{
   background-color: black;
   height: 90px;
   width: 100%;
 }
+
+
 
 .container .box .content{
   margin-top: 50px;
@@ -84,8 +114,8 @@ header nav .logo-nav .text{
   background-repeat: no-repeat;
   background-size: cover;
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 10px;
+  /* transform: translateX(-50%); */
   width: 100px;
   height: 100px;
   border-radius: 20px;

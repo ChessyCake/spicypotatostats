@@ -305,5 +305,11 @@ else {
 
 }
 
+const tem = document.getElementById("time");
+
+setInterval(()=>{
+    const tim = new Date().toLocaleTimeString();
+    tem.innerHTML = `Current Time: ${tim}`;
+},1000)
 
 
