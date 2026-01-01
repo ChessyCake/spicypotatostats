@@ -1,6 +1,16 @@
 window.onload = spicyPotatoStats;
 
 async function spicyPotatoStats() {
+
+  const loader = document.getElementById("loader");
+  const container = document.querySelector(".container");
+  const footer = document.querySelector("footer");
+
+  loader.style.visibility = "visible";
+  container.style.visibility = "hidden";
+  footer.style.visibility = "hidden";
+
+    try{
          const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;prahlad_kumar-0037");
          const data = await info.json();
          
@@ -303,6 +313,13 @@ else {
        
 
 
+    } catch(err){
+        loader.innerHTML = "Failed to load!"
+    } finally{
+        loader.style.visibility = "hidden";
+        container.style.visibility = "visible";
+        footer.style.visibility = "visible";
+    }
 }
 
 const tem = document.getElementById("time");
