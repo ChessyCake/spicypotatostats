@@ -75,7 +75,7 @@ async function fetchStreak(userName, specialId) {
   const today = new Date().toLocaleDateString();
 
   const streak = await fetch(
-    `https://codeforces.com/api/user.status?handle=${userName}&from=1&count=500`
+    `https://codeforces.com/api/user.status?handle=${userName}&from=1&count=20`
   );
   const streakData = await streak.json();
 
