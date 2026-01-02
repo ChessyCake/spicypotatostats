@@ -1,7 +1,6 @@
 window.onload = spicyPotatoStats;
 
 async function spicyPotatoStats() {
-
   const loader = document.getElementById("loader");
   const container = document.querySelector(".container");
   const footer = document.querySelector("footer");
@@ -10,323 +9,131 @@ async function spicyPotatoStats() {
   container.style.visibility = "hidden";
   footer.style.visibility = "hidden";
 
-    try{
-         const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;prahlad_kumar-0037");
-         const data = await info.json();
-         
-         const dataArr = data.result;
-         const harshData = dataArr[0];
-         const raunakData = dataArr[1];
-         const prathamData = dataArr[2];
-         const prahladData = dataArr[3];
-         
-        document.getElementById("HarshuserName").innerHTML = `<p> ${harshData.handle} </p>`
-        document.getElementById("RaunakuserName").innerHTML = `<p> ${raunakData.handle} </p>`
-        document.getElementById("PrathamuserName").innerHTML = `<p> ${prathamData.handle} </p>`
-        document.getElementById("PrahladuserName").innerHTML = `<p> ${prahladData.handle} </p>`
-         
-        document.getElementById("Harshrating").innerHTML = `<p> ${harshData.rating} </p>`
-        document.getElementById("Raunakrating").innerHTML = `<p> ${raunakData.rating} </p>`
-        document.getElementById("Prathamrating").innerHTML = `<p> ${prathamData.rating} </p>`
-        document.getElementById("Prahladrating").innerHTML = `<p> ${prahladData.rating} </p>`
-
-        document.getElementById("Harshpfp").style.backgroundImage = `url(${harshData.avatar})`
-        document.getElementById("Raunakpfp").style.backgroundImage = `url(${raunakData.avatar})`
-        document.getElementById("Prathampfp").style.backgroundImage = `url(${prathamData.avatar})`
-        document.getElementById("Prahladpfp").style.backgroundImage = `url(${prahladData.avatar})`
-
-
-        const HarshlastOnline = new Date(harshData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })
-         
-        const RaunaklastOnline = new Date(raunakData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })
-        
-        const PrathamlastOnline = new Date(prathamData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })
-        
-        const PrahladlastOnline = new Date(prahladData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })        
-      
-        document.getElementById("Harshlastonline").innerHTML = `<p> ${HarshlastOnline} </p>`
-        document.getElementById("Raunaklastonline").innerHTML = `<p> ${RaunaklastOnline} </p>`
-        document.getElementById("Prathamlastonline").innerHTML = `<p> ${PrathamlastOnline} </p>`
-        document.getElementById("Prahladlastonline").innerHTML = `<p> ${PrahladlastOnline} </p>`
-
-
-        const STREAK_START = new Date('01/01/2026').toLocaleDateString();
-        const today = new Date().toLocaleDateString();
-
-        const harshStreak = await fetch("https://codeforces.com/api/user.status?handle=vorqx&from=1&count=20")
-        const harshStreakData = await harshStreak.json();
-
-        const harshStreakUpdate = harshStreakData.result;
-
-
-        let harshStreakValue = 0;        
-        const solvedDays = new Set();
-  
-        harshStreakUpdate.forEach(e => {
-                if(e.verdict === "OK"){
-                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
-                        solvedDays.add( meo );
-                     
-                }
-        });
-
-
-       const harshArray = Array.from(solvedDays);
-       harshArray.sort( (a,b) => new Date(b) - new Date(a));
-
-       const harshfiltered = harshArray.filter((d) => new Date(d) >= new Date(STREAK_START));
-
-
-if(Date.parse(today) < Date.parse(STREAK_START)){
-    document.getElementById("HarshStreak").parentElement.style.display = "none";
-}
-else if(harshfiltered.length === 0){
-    document.getElementById("HarshStreak").parentElement.style.display = "none";
-}
-else {
-    if(harshfiltered[0] !== today){
-        document.getElementById("HarshStreak").parentElement.style.display = "none";
-    } 
-    else {
-
-        harshStreakValue = 1; 
-
-        for(let i = 0; i < harshfiltered.length - 1; i++){
-
-            let d1 = new Date(harshfiltered[i]);
-            let d2 = new Date(harshfiltered[i+1]);
-
-            let harshgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
-
-            if(harshgapDays === 1){
-                harshStreakValue++;
-            } else {
-                break;
-            }
-        }
-
-        document.getElementById("HarshStreak").innerHTML = `<span>${harshStreakValue}</span>`;
-        document.getElementById("HarshStreak").parentElement.style.display = "flex";
-    }
-}
-
-
-
-        const raunakStreak = await fetch("https://codeforces.com/api/user.status?handle=rust7&from=1&count=20")
-        const raunakStreakData = await raunakStreak.json();
-
-        const raunakStreakUpdate = raunakStreakData.result;
-
-
- 
-        const raunaksolvedDays = new Set();
-  
-        raunakStreakUpdate.forEach(e => {
-                if(e.verdict === "OK"){
-                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
-                        raunaksolvedDays.add( meo );
-                }
-        });
-
-       const raunakArray = Array.from(raunaksolvedDays);
-       raunakArray.sort((a,b) => new Date(b) - new Date(a));
-
-    
-
-               const raunakfiltered =  raunakArray.filter( (e) => new Date(e) >= new Date(STREAK_START));
-             
-
-
-let raunakstreak = 0;
-
-
-if( Date.parse(today) < Date.parse(STREAK_START)){
-    document.getElementById("RaunakStreak").parentElement.style.display = "none";
-}
-else if(raunakfiltered.length === 0){
-    document.getElementById("RaunakStreak").parentElement.style.display = "none";
-}
-else {
-
-  
-    if(raunakfiltered[0] !== today){
-        document.getElementById("RaunakStreak").parentElement.style.display = "none";
-    } 
-    else {
-
-        raunakstreak = 1;   
-
-        for(let i = 0; i < raunakfiltered.length - 1; i++){
-
-            let d1 = new Date(raunakfiltered[i]);
-            let d2 = new Date(raunakfiltered[i+1]);
-
-            let raunakgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
-
-            if(raunakgapDays === 1){
-                raunakstreak++;
-            } else {
-                break;
-            }
-        }
-
-        document.getElementById("RaunakStreak").innerHTML = `<span>${raunakstreak}</span>`;
-        document.getElementById("RaunakStreak").parentElement.style.display = "flex";
-    }
-}
-
-
-                
-         const prathamStreak = await fetch("https://codeforces.com/api/user.status?handle=sn0w07&from=1&count=20")
-        const prathamStreakData = await prathamStreak.json();
-
-        const prathamStreakUpdate = prathamStreakData.result;
-
-      
-        const prathamsolvedDays = new Set();
-  
-        prathamStreakUpdate.forEach(e => {
-                if(e.verdict === "OK"){
-                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
-                        prathamsolvedDays.add( meo );
-                }
-        });
-
-       const prathamArray = Array.from(prathamsolvedDays);
-       prathamArray.sort((a,b) => new Date(b) - new Date(a));
-
-
-const prathamfiltered = prathamArray.filter(d => new Date(d) >= new Date(STREAK_START));
-
-      let prathamstreak = 0;
-
-if( Date.parse(today) < Date.parse(STREAK_START)){
-    document.getElementById("PrathamStreak").parentElement.style.display = "none";
-}
-else if(prathamfiltered.length === 0){
-    document.getElementById("PrathamStreak").parentElement.style.display = "none";
-}
-else {
-
-   
-    if(prathamfiltered[0] !== today){
-        document.getElementById("PrathamStreak").parentElement.style.display = "none";
-    } 
-    else {
-
-        prathamstreak = 1; 
-
-        for(let i = 0; i < prathamfiltered.length - 1; i++){
-
-            let d1 = new Date(prathamfiltered[i]);
-            let d2 = new Date(prathamfiltered[i+1]);
-
-            let prathamgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
-
-            if(prathamgapDays === 1){
-                prathamstreak++;
-            } else {
-                break;
-            }
-        }
-
-        document.getElementById("PrathamStreak").innerHTML = `<span>${prathamstreak}</span>`;
-        document.getElementById("PrathamStreak").parentElement.style.display = "flex";
-    }
-}
-
-
-        
-                
-         const prahladStreak = await fetch("https://codeforces.com/api/user.status?handle=prahlad_kumar-0037&from=1&count=20")
-        const prahladStreakData = await prahladStreak.json();
-
-        const prahladStreakUpdate = prahladStreakData.result;
-
-
-        let prahladStreakValue = 0;        
-        const prahladsolvedDays = new Set();
-  
-        prahladStreakUpdate.forEach(e => {
-                if(e.verdict === "OK"){
-                        const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
-                        prahladsolvedDays.add( meo );
-                }
-        });
-
-       const prahladArray = Array.from(prahladsolvedDays);
-       prahladArray.sort((a,b) => new Date(b) - new Date(a));
-
-const prahladfiltered = prahladArray.filter(d => new Date(d) >= new Date( STREAK_START ));
-
-if( Date.parse(today) < Date.parse(STREAK_START)){
-    document.getElementById("PrahladStreak").parentElement.style.display = "none";
-}
-else if(prahladfiltered.length === 0){
-    document.getElementById("PrahladStreak").parentElement.style.display = "none";
-}
-else {
-
- 
-    if(prahladfiltered[0] !== today){
-        document.getElementById("PrahladStreak").parentElement.style.display = "none";
-    } 
-    else {
-
-        prahladStreakValue = 1;   
-
-        for(let i = 0; i < prahladfiltered.length - 1; i++){
-
-            let d1 = new Date(prahladfiltered[i]);
-            let d2 = new Date(prahladfiltered[i+1]);
-
-            let prahladgapDays = Math.floor(Math.abs(d1 - d2) / (24*60*60*1000));
-
-            if(prahladgapDays === 1){
-                prahladStreakValue++;
-            } else {
-                break;
-            }
-        }
-
-        document.getElementById("PrahladStreak").innerHTML = `<span>${prahladStreakValue}</span>`;
-        document.getElementById("PrahladStreak").parentElement.style.display = "flex";
-    }
-}
-
-       
-
-
-    } catch(err){
-        loader.innerHTML = "Failed to load!"
-    } finally{
-        loader.style.visibility = "hidden";
-        container.style.visibility = "visible";
-        footer.style.visibility = "visible";
-    }
+  try {
+    await Promise.all([
+      fetchInfo("vorqx", "Harsh"),
+      fetchInfo("rust7", "Raunak"),
+      fetchInfo("sn0w07", "Pratham"),
+      fetchInfo("prahlad_kumar-0037", "Prahlad"),
+    ]);
+
+    await Promise.all([
+      fetchStreak("vorqx", "HarshStreak"),
+      fetchStreak("rust7", "RaunakStreak"),
+      fetchStreak("sn0w07", "PrathamStreak"),
+      fetchStreak("prahlad_kumar-0037", "PrahladStreak"),
+    ]);
+  } catch (err) {
+    loader.innerHTML = "Failed to load!";
+  } finally {
+    loader.style.visibility = "hidden";
+    container.style.visibility = "visible";
+    footer.style.visibility = "visible";
+  }
 }
 
 const tem = document.getElementById("time");
 
-setInterval(()=>{
-    const tim = new Date().toLocaleTimeString();
-    tem.innerHTML = `<h1>Time: <span> ${tim} </span> <h1>`;
-},1000)
+setInterval(() => {
+  const tim = new Date().toLocaleTimeString();
+  tem.innerHTML = `<h1>Time: <span> ${tim} </span> <h1>`;
+}, 1000);
 
+async function fetchInfo(userName, specialId) {
+  const info = await fetch(
+    `https://codeforces.com/api/user.info?handles=${userName}`
+  );
+  const data = await info.json();
 
+  const user = data.result[0];
+  document.getElementById(
+    `${specialId}userName`
+  ).innerHTML = `<p> ${user.handle} </p>`;
+  document.getElementById(
+    `${specialId}rating`
+  ).innerHTML = `<p> ${user.rating} </p>`;
+  document.getElementById(
+    `${specialId}pfp`
+  ).style.backgroundImage = `url(${user.avatar})`;
+
+  const lastOnline = new Date(user.lastOnlineTimeSeconds * 1000).toLocaleString(
+    "en-IN",
+    {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Kolkata",
+    }
+  );
+
+  document.getElementById(
+    `${specialId}lastonline`
+  ).innerHTML = `<p> ${lastOnline} </p>`;
+}
+
+async function fetchStreak(userName, specialId) {
+  const STREAK_START = new Date("2026-01-01").toLocaleDateString();
+  const today = new Date().toLocaleDateString();
+
+  const streak = await fetch(
+    `https://codeforces.com/api/user.status?handle=${userName}&from=1&count=500`
+  );
+  const streakData = await streak.json();
+
+  const streakUpdate = streakData.result;
+
+  let streakValue = 0;
+  const solvedDays = new Set();
+
+  streakUpdate.forEach((e) => {
+    if (e.verdict === "OK") {
+      const meo = new Date(e.creationTimeSeconds * 1000).toLocaleDateString();
+      solvedDays.add(meo);
+    }
+  });
+
+  const array = Array.from(solvedDays);
+  array.sort((a, b) => new Date(b) - new Date(a));
+
+  const filteredArray = array.filter(
+    (d) => new Date(d) >= new Date(STREAK_START)
+  );
+
+  if (Date.parse(today) < Date.parse(STREAK_START)) {
+    document.getElementById(specialId).parentElement.style.display = "none";
+  } else if (filteredArray.length === 0) {
+    document.getElementById(specialId).parentElement.style.display = "none";
+  } else {
+    const latest = new Date(filteredArray[0]);
+    const now = new Date();
+
+    latest.setHours(0, 0, 0, 0);
+    now.setHours(0, 0, 0, 0);
+
+    const diffDays = Math.floor((now - latest) / (24 * 60 * 60 * 1000));
+
+    if (diffDays > 1) {
+      document.getElementById(specialId).parentElement.style.display = "none";
+    } else {
+      streakValue = 1;
+
+      for (let i = 0; i < filteredArray.length - 1; i++) {
+        let d1 = new Date(filteredArray[i]);
+        let d2 = new Date(filteredArray[i + 1]);
+
+        d1.setHours(0, 0, 0, 0);
+        d2.setHours(0, 0, 0, 0);
+
+        let gap = Math.floor(Math.abs(d1 - d2) / (24 * 60 * 60 * 1000));
+
+        if (gap === 1) {
+          streakValue++;
+        } else break;
+      }
+
+      document.getElementById(
+        specialId
+      ).innerHTML = `<span>${streakValue}</span>`;
+      document.getElementById(specialId).parentElement.style.display = "flex";
+    }
+  }
+}
