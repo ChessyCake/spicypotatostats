@@ -7,7 +7,7 @@ async function runAllStreaks() {
     { handle: "vorqx", el: "HarshStreak" },
     { handle: "rust7", el: "RaunakStreak" },
     { handle: "sn0w07", el: "PrathamStreak" },
-    { handle: "prahlad_kumar-0037", el: "PrahladStreak" }
+    { handle: "famagusta-7", el: "PrahladStreak" }
   ];
 
   for (const user of users) {
@@ -126,7 +126,7 @@ setInterval(displayTime, 1000);
 
 
 async function fetchUserInfo() {
-   const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;prahlad_kumar-0037");
+   const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;famagusta-7");
          const data = await info.json();
          
          const dataArr = data.result;
