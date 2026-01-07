@@ -130,6 +130,13 @@ header nav .logo-nav .text{
   background-size: cover;
 }
 
+
+#vreonfoot{
+ background-image: url(assets/jojo.jpg);
+  background-position: top;
+  background-size: cover;
+}
+
 .container .foot{
   background-color: black;
   height: 90px;

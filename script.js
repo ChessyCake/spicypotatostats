@@ -7,7 +7,9 @@ async function runAllStreaks() {
     { handle: "vorqx", el: "HarshStreak" },
     { handle: "rust7", el: "RaunakStreak" },
     { handle: "sn0w07", el: "PrathamStreak" },
-    { handle: "famagusta-7", el: "PrahladStreak" }
+    { handle: "famagusta-7", el: "PrahladStreak" },
+    { handle: "vreonx", el: "VreonStreak" }
+    
   ];
 
   for (const user of users) {
@@ -126,7 +128,7 @@ setInterval(displayTime, 1000);
 
 
 async function fetchUserInfo() {
-   const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;famagusta-7");
+   const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;famagusta-7;vreonx");
          const data = await info.json();
          
          const dataArr = data.result;
@@ -134,21 +136,25 @@ async function fetchUserInfo() {
          const raunakData = dataArr[1];
          const prathamData = dataArr[2];
          const prahladData = dataArr[3];
+         const vreonData = dataArr[4];
          
         document.getElementById("HarshuserName").innerHTML = `<p> ${harshData.handle} </p>`
         document.getElementById("RaunakuserName").innerHTML = `<p> ${raunakData.handle} </p>`
         document.getElementById("PrathamuserName").innerHTML = `<p> ${prathamData.handle} </p>`
         document.getElementById("PrahladuserName").innerHTML = `<p> ${prahladData.handle} </p>`
+        document.getElementById("VreonuserName").innerHTML = `<p> ${vreonData.handle} </p>`
          
         document.getElementById("Harshrating").innerHTML = `<p> ${harshData.rating} </p>`
         document.getElementById("Raunakrating").innerHTML = `<p> ${raunakData.rating} </p>`
         document.getElementById("Prathamrating").innerHTML = `<p> ${prathamData.rating} </p>`
         document.getElementById("Prahladrating").innerHTML = `<p> ${prahladData.rating} </p>`
+        document.getElementById("Vreonrating").innerHTML = `<p> ${vreonData.rating} </p>`
 
         document.getElementById("Harshpfp").style.backgroundImage = `url(${harshData.avatar})`
         document.getElementById("Raunakpfp").style.backgroundImage = `url(${raunakData.avatar})`
         document.getElementById("Prathampfp").style.backgroundImage = `url(${prathamData.avatar})`
         document.getElementById("Prahladpfp").style.backgroundImage = `url(${prahladData.avatar})`
+        document.getElementById("Vreonpfp").style.backgroundImage = `url(${vreonData.avatar})`
 
 
         const HarshlastOnline = new Date(harshData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
@@ -173,12 +179,19 @@ async function fetchUserInfo() {
                    dateStyle: "medium",
                    timeStyle: "short",
                    timeZone: "Asia/Kolkata"
+                })
+         
+        const VreonlastOnline = new Date(vreonData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
+                   dateStyle: "medium",
+                   timeStyle: "short",
+                   timeZone: "Asia/Kolkata"
                 })        
       
         document.getElementById("Harshlastonline").innerHTML = `<p> ${HarshlastOnline} </p>`
         document.getElementById("Raunaklastonline").innerHTML = `<p> ${RaunaklastOnline} </p>`
         document.getElementById("Prathamlastonline").innerHTML = `<p> ${PrathamlastOnline} </p>`
         document.getElementById("Prahladlastonline").innerHTML = `<p> ${PrahladlastOnline} </p>`
+        document.getElementById("Vreonlastonline").innerHTML = `<p> ${VreonlastOnline} </p>`
 
 }
 
