@@ -1,2 +1,2 @@
-#preview:
-![spicypotatostats](https://spicypotatostats.pages.dev/)
+# preview:
+[spicypotatostats](https://spicypotatostats.pages.dev/)
