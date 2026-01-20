@@ -1,2 +1,2 @@
 # preview:
-[spicypotatostats](https://spicypotatostats.pages.dev/)
+[spicypotatostats](https://cf-stat.pages.dev/)
