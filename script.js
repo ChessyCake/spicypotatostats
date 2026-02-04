@@ -1,14 +1,15 @@
-window.onload = loadAll();
+window.onload = loadAll;
 
 
 const sleep = ms => new Promise(res => setTimeout(res, ms));
+
 async function runAllStreaks() {
   const users = [
-    { handle: "vorqx", el: "HarshStreak" },
-    { handle: "rust7", el: "RaunakStreak" },
-    { handle: "sn0w07", el: "PrathamStreak" },
-    { handle: "famagusta-7", el: "PrahladStreak" },
-    { handle: "vreonx", el: "VreonStreak" }
+    { handle: "vorqx", el: "aStreak" },
+    { handle: "rust7", el: "bStreak" },
+    { handle: "sn0w07", el: "cStreak" },
+    { handle: "famagusta-7", el: "dStreak" },
+    { handle: "vreonx", el: "eStreak" }
     
   ];
 
@@ -126,73 +127,45 @@ displayTime();
 setInterval(displayTime, 1000);
 
 
-
-async function fetchUserInfo() {
-   const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;famagusta-7;vreonx");
+async function getData() {
+         const info = await fetch("https://codeforces.com/api/user.info?handles=vorqX;rust7;sn0w07;famagusta-7;vreonx");
          const data = await info.json();
          
          const dataArr = data.result;
-         const harshData = dataArr[0];
-         const raunakData = dataArr[1];
-         const prathamData = dataArr[2];
-         const prahladData = dataArr[3];
-         const vreonData = dataArr[4];
+
+         const retValue = [
+          {handle: "a", Data: dataArr[0]},
+          {handle: "b", Data: dataArr[1]},
+          {handle: "c", Data: dataArr[2]},
+          {handle: "d", Data: dataArr[3]},
+          {handle: "e", Data: dataArr[4]}
+         ]
+
+         for( values of retValue){
+                fetchUserInfo(values.handle, values.Data);
+         }
+}
+ getData();
+
+
+
+async function fetchUserInfo(handle, Data) {
+  
+
+         document.getElementById(`${handle}userName`).innerHTML = `<p> ${Data.handle}`;
+         document.getElementById(`${handle}rating`).innerHTML = `<p> ${Data.rating}`;
+         document.getElementById(`${handle}pfp`).style.background = `url(${Data.avatar})`;
+         document.getElementById(`${handle}pfp`).style.backgroundSize = "cover";
+         document.getElementById(`${handle}pfp`).style.backgroundPosition = "center";
+
          
-        document.getElementById("HarshuserName").innerHTML = `<p> ${harshData.handle} </p>`
-        document.getElementById("RaunakuserName").innerHTML = `<p> ${raunakData.handle} </p>`
-        document.getElementById("PrathamuserName").innerHTML = `<p> ${prathamData.handle} </p>`
-        document.getElementById("PrahladuserName").innerHTML = `<p> ${prahladData.handle} </p>`
-        document.getElementById("VreonuserName").innerHTML = `<p> ${vreonData.handle} </p>`
-         
-        document.getElementById("Harshrating").innerHTML = `<p> ${harshData.rating} </p>`
-        document.getElementById("Raunakrating").innerHTML = `<p> ${raunakData.rating} </p>`
-        document.getElementById("Prathamrating").innerHTML = `<p> ${prathamData.rating} </p>`
-        document.getElementById("Prahladrating").innerHTML = `<p> ${prahladData.rating} </p>`
-        document.getElementById("Vreonrating").innerHTML = `<p> ${vreonData.rating} </p>`
-
-        document.getElementById("Harshpfp").style.backgroundImage = `url(${harshData.avatar})`
-        document.getElementById("Raunakpfp").style.backgroundImage = `url(${raunakData.avatar})`
-        document.getElementById("Prathampfp").style.backgroundImage = `url(${prathamData.avatar})`
-        document.getElementById("Prahladpfp").style.backgroundImage = `url(${prahladData.avatar})`
-        document.getElementById("Vreonpfp").style.backgroundImage = `url(${vreonData.avatar})`
-
-
-        const HarshlastOnline = new Date(harshData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
+        const lastOnline = new Date(Data.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
                    dateStyle: "medium",
                    timeStyle: "short",
                    timeZone: "Asia/Kolkata"
                 })
-         
-        const RaunaklastOnline = new Date(raunakData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })
-        
-        const PrathamlastOnline = new Date(prathamData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })
-        
-        const PrahladlastOnline = new Date(prahladData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })
-         
-        const VreonlastOnline = new Date(vreonData.lastOnlineTimeSeconds * 1000).toLocaleString("en-IN", {
-                   dateStyle: "medium",
-                   timeStyle: "short",
-                   timeZone: "Asia/Kolkata"
-                })        
-      
-        document.getElementById("Harshlastonline").innerHTML = `<p> ${HarshlastOnline} </p>`
-        document.getElementById("Raunaklastonline").innerHTML = `<p> ${RaunaklastOnline} </p>`
-        document.getElementById("Prathamlastonline").innerHTML = `<p> ${PrathamlastOnline} </p>`
-        document.getElementById("Prahladlastonline").innerHTML = `<p> ${PrahladlastOnline} </p>`
-        document.getElementById("Vreonlastonline").innerHTML = `<p> ${VreonlastOnline} </p>`
 
+         document.getElementById(`${handle}lastonline`).innerHTML = `<p> ${lastOnline} </p>`        
 }
 
 

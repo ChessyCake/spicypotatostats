@@ -106,32 +106,32 @@ header nav .logo-nav .text{
   max-width: 95vw;
 }
 
-#harshfoot{
+#afoot{
   background-image: url(assets/7.jpg);
   background-position: top;
   background-size: cover;
 }
 
-#raunakfoot{
+#bfoot{
  background-image: url(assets/personclouds.jpeg);
   background-position: center;
   background-size: cover;
 }
 
-#prathamfoot{
+#cfoot{
  background-image: url(assets/lampclouds.jpeg);
   background-position: top;
   background-size: cover;
 }
 
-#prahladfoot{
+#dfoot{
  background-image: url(assets/cloudrailing.jpg);
   background-position: top;
   background-size: cover;
 }
 
 
-#vreonfoot{
+#efoot{
  background-image: url(assets/jojo.jpg);
   background-position: top;
   background-size: cover;
